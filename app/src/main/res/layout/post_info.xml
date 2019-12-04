@@ -1,0 +1,45 @@
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="#f1f5f7"
+    tools:context=".Home_Fragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/edtSearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border2"
+            android:gravity="center"
+            android:hint="Enter content for search..."
+            android:textAlignment="center"
+            android:textColor="#66000000"
+            android:textColorHint="#66000000" />
+
+        <ImageView
+            android:layout_marginTop="@dimen/_8sdp"
+            android:layout_marginRight="@dimen/_2sdp"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentRight="true"
+            android:id="@+id/imgSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:clickable="true"
+            android:src="@drawable/ic_search_black_24dp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_below="@id/imgSearch"
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clipToPadding="false"
+            android:scrollbars="vertical" />
+
+    </RelativeLayout>
+</androidx.core.widget.NestedScrollView>
