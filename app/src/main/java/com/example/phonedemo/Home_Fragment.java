@@ -41,7 +41,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class Home_Fragment extends Fragment {
     private static final String TAG = "Home_Fragment";
-    private static final String URL = "http://192.168.59.107/phone_demo/getAllCategory.php";
+    private static final String URL = "http://192.168.1.113/phone_demo/getAllCategory.php";
 
     private RecyclerView recyclerView;
     private List<Movie> movieList;

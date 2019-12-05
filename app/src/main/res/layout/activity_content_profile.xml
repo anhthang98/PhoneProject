@@ -34,6 +34,7 @@
                 style="@style/profileDetailsTextMain" />
 
             <TextView
+                android:id="@+id/tvUsername"
                 android:text="TuanAnh"
                 android:layout_toRightOf="@id/nameImageView"
                 style="@style/profileDetailsMiniText" />
@@ -53,6 +54,7 @@
                 style="@style/profileDetailsTextMain" />
 
             <TextView
+                android:id="@+id/tvEmail"
                 android:text="tuananh@gmail.com"
                 android:layout_toRightOf="@id/emailImageView"
                 style="@style/profileDetailsMiniText" />
@@ -72,6 +74,7 @@
                 style="@style/profileDetailsTextMain" />
 
             <TextView
+                android:id="@+id/tvAddress"
                 android:text="Ha Dong."
                 android:layout_toRightOf="@id/addressImageView"
                 style="@style/profileDetailsMiniText" />

@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText etUsername, etPassword;
     Button btnLogin;
     TextView tvRegister;
-    String URL_LOGIN = "http://192.168.59.107/phone_demo/Login.php";
+    String URL_LOGIN = "http://192.168.1.113/phone_demo/Login.php";
 
     SessionManager sessionManager;
 

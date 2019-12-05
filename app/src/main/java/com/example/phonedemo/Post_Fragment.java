@@ -1,11 +1,9 @@
 package com.example.phonedemo;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Resources;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.TypedValue;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +19,6 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
@@ -40,14 +37,13 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.android.volley.VolleyLog.TAG;
 
 public class Post_Fragment extends Fragment {
     private static final String TAG = "Post_Fragment";
-    private static final String URL = "http://192.168.59.107/phone_demo/getPhone.php";
-    private static final String URL_ADD_LIKE = "http://192.168.59.107/phone_demo/addLike.php";
-    private static final String URL_DELETE_LIKEPOST = "http://192.168.59.107/phone_demo/deleteLike.php";
-    private static final String URL_GET_LIKEPOST = "http://192.168.59.107/phone_demo/getLikePost.php";
+    private static final String URL = "http://192.168.1.113/phone_demo/getPhone.php";
+    private static final String URL_ADD_LIKE = "http://192.168.1.113/phone_demo/addLike.php";
+    private static final String URL_DELETE_LIKEPOST = "http://192.168.1.113/phone_demo/deleteLike.php";
+    private static final String URL_GET_LIKEPOST = "http://192.168.1.113/phone_demo/getLikePost.php";
 
     private RecyclerView recyclerView;
     private List<Movie> movieList;

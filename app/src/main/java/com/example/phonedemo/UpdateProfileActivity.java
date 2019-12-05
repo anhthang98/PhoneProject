@@ -4,7 +4,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -27,60 +26,46 @@ import java.util.Map;
 
 import static com.android.volley.VolleyLog.TAG;
 
-public class RegisterActivity extends AppCompatActivity {
-
+public class UpdateProfileActivity extends AppCompatActivity {
     EditText etUsername, etPassword, etEmail, etAddress;
-    Button btnRegister;
-    private static final String URL_REGISTER = "http://192.168.59.107/phone_demo/register.php";
+    Button btnUpdate;
+    static SessionManager sessionManager;
+    private static final String URL_UPDATE = "http://192.168.1.113/phone_demo/updateProfile.php";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_update_profile);
         etUsername = findViewById(R.id.etUserName);
         etPassword = findViewById(R.id.etPassword);
         etEmail = findViewById(R.id.etEmail);
         etAddress = findViewById(R.id.etAddress);
-        btnRegister = findViewById(R.id.btnRegister);
+        btnUpdate = findViewById(R.id.btnUpdate);
+        sessionManager = new SessionManager(getBaseContext());
+        Intent intent = getIntent();
+        etUsername.setText(intent.getStringExtra("userName"));
+        etEmail.setText(intent.getStringExtra("email"));
+        etAddress.setText(intent.getStringExtra("address"));
 
-        btnRegister.setOnClickListener(new View.OnClickListener() {
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String userID = "";
-                String userName = etUsername.getText().toString();
-                String password = etPassword.getText().toString();
-                String email = etEmail.getText().toString();
-                String address = etAddress.getText().toString();
-
-                if (validateLogin() || email.isEmpty() || address.isEmpty()){
-                    addUser(userID, userName, password, email, address);
-                    Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-                    startActivity(intent);
-                }
-
+                HashMap<String, String> param = sessionManager.getUserDetail();
+                final String userID = param.get(sessionManager.ID);
+                String userName, email, address;
+                userName = etUsername.getText().toString().trim();
+                email = etEmail.getText().toString().trim();
+                address = etAddress.getText().toString().trim();
+                updateProfile(userID, userName, email, address);
+                Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+                startActivity(intent);
             }
         });
     }
 
-    private boolean validateLogin() {
-        if (TextUtils.isEmpty(etUsername.getText().toString())) {
-            etUsername.setError("Not blank");
-            etUsername.requestFocus();
-            return false;
-        }
-
-        if (TextUtils.isEmpty(etPassword.getText().toString())) {
-            etPassword.setError("Not blank");
-            etPassword.requestFocus();
-            return false;
-        }
-
-        return true;
-    }
-
-    public void addUser(final String userID, final String userName, final String password, final String email, final String address) {
+    public void updateProfile(final String userID, final String userName, final String email, final String address) {
         RequestQueue requestQueue = Volley.newRequestQueue(getBaseContext());
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_REGISTER,
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_UPDATE,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -111,7 +96,6 @@ public class RegisterActivity extends AppCompatActivity {
 
                 params.put("userid", userID);
                 params.put("username", userName);
-                params.put("password", password);
                 params.put("email", email);
                 params.put("address", address);
 
